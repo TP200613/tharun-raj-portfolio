@@ -241,7 +241,7 @@ export const SoftSkillsCharacter: React.FC = () => {
     if (avatarStyle === '3d') {
       return getAssetUrl('tharun_avatar.png');
     }
-    return getAssetUrl('tharun.png');
+    return getAssetUrl('tharun1.png');
   };
 
   return (
@@ -364,6 +364,9 @@ export const SoftSkillsCharacter: React.FC = () => {
                 className={`w-full h-full object-cover object-center transition-all duration-500 animate-in fade-in zoom-in-95 ${
                   isWaving ? 'scale-105' : 'group-hover:scale-103'
                 }`}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = getAssetUrl('tharun1.png');
+                }}
               />
 
               {/* Holographic Mode Overlays based on active skill */}

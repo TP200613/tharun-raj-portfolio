@@ -32,7 +32,7 @@ const PRESET_PROFILES: Record<string, GitHubProfileData> = {
   TP200613: {
     login: 'TP200613',
     name: 'Tharun Raj T P',
-    avatar_url: getAssetUrl('tharun.png'),
+    avatar_url: 'tharun1.png',
     bio: 'B.Tech CSE (AI & Data Engineering) @ LPU | Full-Stack & GitPulse Creator',
     public_repos: 14,
     followers: 18,
@@ -425,7 +425,10 @@ export const GitPulseSimulator: React.FC = () => {
                   <img
                     src={getAssetUrl(profile.avatar_url)}
                     alt={profile.name}
-                    className="w-16 h-16 rounded-2xl border-2 border-[var(--theme-primary)] shadow-md object-cover bg-white"
+                    className="w-16 h-16 rounded-2xl border-2 border-[var(--theme-primary)] shadow-md object-cover bg-white shrink-0"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = getAssetUrl('tharun1.png');
+                    }}
                   />
                   <div className="space-y-1 flex-1">
                     <div className="flex items-center justify-between">
@@ -502,7 +505,10 @@ export const GitPulseSimulator: React.FC = () => {
                     <img
                       src={getAssetUrl(compareProfile.avatar_url)}
                       alt={compareProfile.name}
-                      className="w-16 h-16 rounded-2xl border-2 border-[var(--theme-primary)] shadow-md object-cover bg-white"
+                      className="w-16 h-16 rounded-2xl border-2 border-[var(--theme-primary)] shadow-md object-cover bg-white shrink-0"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(compareProfile.name)}&background=random`;
+                      }}
                     />
                     <div className="space-y-1 flex-1">
                       <div className="flex items-center justify-between">

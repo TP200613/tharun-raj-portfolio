@@ -115,7 +115,7 @@ export const DeveloperPassCard: React.FC<DeveloperPassCardProps> = ({
     if (persona === 'avatar') {
       return getAssetUrl('tharun_avatar.png');
     }
-    return getAssetUrl('tharun.png');
+    return getAssetUrl('tharun1.png');
   };
 
   return (
@@ -222,6 +222,9 @@ export const DeveloperPassCard: React.FC<DeveloperPassCardProps> = ({
                 src={getPersonaImage()}
                 alt="THARUN RAJ T P"
                 className="w-full h-full object-cover object-top transition-all duration-700 ease-out group-hover:scale-104"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = getAssetUrl('tharun1.png');
+                }}
               />
 
               {/* Holographic Subtle Corner Badge */}
