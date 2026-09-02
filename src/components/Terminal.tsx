@@ -142,6 +142,10 @@ export const Terminal: React.FC = () => {
             <p className="text-[#a8a29e]">Engineered SQLite analytics layer for commit streaks, consistency scores (0–100), language detection, and repo rankings based on stars/forks.</p>
             <p className="text-[#38bdf8]">Multi-user comparison with interactive React charts and 3D interface using Three.js &amp; React Three Fiber.</p>
             <p className="text-[#34d399] text-[11px]">Deployments: Vercel (Frontend) + Render (Flask Backend)</p>
+            <div className="flex items-center gap-3 pt-1 text-[11px]">
+              <a href="https://gitpulse-v1.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[#38bdf8] underline hover:text-[#7dd3fc]">🔗 Live Demo: gitpulse-v1.vercel.app</a>
+              <a href="https://github.com/TP200613/TP200613" target="_blank" rel="noopener noreferrer" className="text-[#d4af37] underline hover:text-[#fef08a]">📁 GitHub Repo</a>
+            </div>
           </div>
         );
         break;

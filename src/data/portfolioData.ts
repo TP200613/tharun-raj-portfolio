@@ -315,7 +315,7 @@ export const PORTFOLIO_DATA = {
       ],
       tags: ['React', 'TypeScript', 'Python', 'Flask', 'SQLite', 'Tailwind CSS', 'Three.js', 'GitHub API', 'Vercel', 'Render'],
       github: 'https://github.com/TP200613/TP200613',
-      demo: 'https://github.com/TP200613/TP200613',
+      demo: 'https://gitpulse-v1.vercel.app',
       featured: true,
       accent: 'from-cyan-500 via-blue-600 to-purple-600',
       image: './gitpulse_graphic.jpg'

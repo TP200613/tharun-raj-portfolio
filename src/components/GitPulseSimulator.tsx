@@ -410,9 +410,22 @@ export const GitPulseSimulator: React.FC = () => {
             </button>
           </div>
 
-          <span className="text-[11px] font-mono text-[var(--theme-dark)] font-bold">
-            ENGINE: FLASK + SQLITE + THREE.JS
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="text-[11px] font-mono text-[var(--theme-dark)] font-bold hidden sm:inline-block">
+              ENGINE: FLASK + SQLITE + THREE.JS
+            </span>
+            <a
+              href="https://gitpulse-v1.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => soundFx.playClick()}
+              className="px-3 py-1.5 rounded-lg btn-theme-primary text-xs font-bold font-mono flex items-center gap-1.5 transition-all shadow-xs"
+              title="Launch Live GitPulse Web App"
+            >
+              <span>Live App</span>
+              <ExternalLink size={12} />
+            </a>
+          </div>
         </div>
 
         {/* Dynamic Display Area */}
