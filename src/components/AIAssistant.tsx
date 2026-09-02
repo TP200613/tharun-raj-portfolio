@@ -10,10 +10,12 @@ import {
   VolumeX,
   Mic,
   MicOff,
-  RotateCcw
+  RotateCcw,
+  BookOpen,
+  HelpCircle
 } from 'lucide-react';
 import { soundFx } from '../utils/sound';
-import { PORTFOLIO_DATA } from '../data/portfolioData';
+import { queryTharunRAG } from '../utils/ragEngine';
 import type { PageId } from '../types/theme';
 
 let messageCounter = 0;
@@ -23,15 +25,18 @@ interface Message {
   id: string;
   sender: 'ai' | 'user';
   text: string;
+  sources?: { id: string; title: string; score: number }[];
   action?: {
     label: string;
     page?: PageId;
     isResume?: boolean;
+    externalUrl?: string;
   };
+  followUps?: string[];
   timestamp: string;
 }
 
-const QUICK_PROMPTS = [
+const INITIAL_QUICK_PROMPTS = [
   'Why should a team hire Tharun Raj?',
   'How was GitPulse built and what makes it unique?',
   'View official formatted resume',
@@ -54,13 +59,19 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ onNavigatePage, onOpen
   const [autoSpeak, setAutoSpeak] = useState(false);
   const [speakingMsgId, setSpeakingMsgId] = useState<string | null>(null);
   const [isListening, setIsListening] = useState(false);
+  const [activePrompts, setActivePrompts] = useState<string[]>(INITIAL_QUICK_PROMPTS);
 
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'welcome',
       sender: 'ai',
-      text: `Hello! I am Tharun Raj's AI Copilot assistant. I can answer questions about his B.Tech in AI & Data Engineering at LPU (CGPA 7.88), GitPulse 3D analytics platform, ${PORTFOLIO_DATA.certificates.length}x Microsoft certificates, 30+ days LeetCode daily streak, and his technical stack (~60% Intermediate across Python, SQL, React, Flask, and Three.js). What would you like to explore?`,
+      text: `Hello! 👋 I am Tharun AI, the intelligent RAG-powered copilot for THARUN RAJ T P. I have complete indexed knowledge of his academic record at LPU (CGPA 7.88), his GitPulse 3D analytics platform, LeetCode 30+ day streak, 8x Microsoft certificates, technical skill set (~60% Intermediate), and official resume. What would you like to explore?`,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      followUps: [
+        'Why should a team hire Tharun Raj?',
+        'How was GitPulse built and what makes it unique?',
+        'View official formatted resume'
+      ]
     },
   ]);
 
@@ -147,85 +158,6 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ onNavigatePage, onOpen
     }
   };
 
-  const generateAIResponse = (userPrompt: string): { text: string; action?: { label: string; page?: PageId; isResume?: boolean } } => {
-    const q = userPrompt.toLowerCase();
-
-    if (q.includes('resume') || q.includes('cv') || q.includes('curriculum') || q.includes('download') || q.includes('pdf')) {
-      return {
-        text: `You can view, download, or print Tharun's official verified resume directly. It includes his complete education at LPU (CGPA 7.88), GitPulse architecture details, ${PORTFOLIO_DATA.certificates.length}x Microsoft certificates, and technical stack (~60% Intermediate level).`,
-        action: { label: 'Open Official Resume Modal', isResume: true },
-      };
-    }
-
-    if (q.includes('hire') || q.includes('why') || q.includes('candidate') || q.includes('strength') || q.includes('fit') || q.includes('internship') || q.includes('job')) {
-      return {
-        text: `THARUN RAJ T P stands out because he bridges rigorous academic foundation with proven execution: he maintains a 7.88 CGPA in B.Tech CSE (AI & Data) at LPU, built the GitPulse analytics platform solo in 5 weeks (Flask, React, Three.js, SQLite), solved LeetCode problems every single day in July 2026 (30+ consecutive day streak), and holds ${PORTFOLIO_DATA.certificates.length} verified Microsoft certificates from the Microsoft AI Skills Fest.`,
-        action: { label: 'Go to Contact Page', page: 'contact' },
-      };
-    }
-
-    if (q.includes('gitpulse') || q.includes('project') || q.includes('flask') || q.includes('three') || q.includes('3d') || q.includes('github api')) {
-      return {
-        text: "GitPulse is Tharun's flagship full-stack GitHub profile analytics platform built solo in 5 weeks. It fetches live data via GitHub API with pagination, calculates commit streaks & consistency scores (0–100) in SQLite, supports multi-user comparison, and features interactive React charts + 3D interface using Three.js & React Three Fiber (deployed on Vercel + Render).",
-        action: { label: 'Explore GitPulse & Projects', page: 'projects' },
-      };
-    }
-
-    if (q.includes('certificate') || q.includes('microsoft') || q.includes('fest') || q.includes('actions') || q.includes('ci/cd') || q.includes('security')) {
-      return {
-        text: `Tharun participated in the Microsoft AI Skills Fest (AI & Data Engineering Track, Jun–Jul 2026) and earned ${PORTFOLIO_DATA.certificates.length} verified certificates covering Git, GitHub, Code Security & Scanning, GitHub Actions CI/CD automation, and Microsoft 365 Copilot agents.`,
-        action: { label: 'View Certificates & Journey', page: 'about' },
-      };
-    }
-
-    if (q.includes('leetcode') || q.includes('dsa') || q.includes('streak') || q.includes('algo') || q.includes('problem') || q.includes('array')) {
-      return {
-        text: "In July 2026, Tharun solved 30+ LeetCode problems consecutively, solving at least one problem every single day with a focus on data structures and algorithms (Array Manipulation, Two Pointers, Strings, Hash Tables, and Binary Search).",
-        action: { label: 'View DSA & Skills Hub', page: 'skills' },
-      };
-    }
-
-    if (q.includes('lpu') || q.includes('education') || q.includes('degree') || q.includes('university') || q.includes('b.tech') || q.includes('cgpa') || q.includes('school') || q.includes('college')) {
-      return {
-        text: "Tharun's education:\n1. Lovely Professional University: B.Tech CSE (AI & Data Engineering), CGPA: 7.88 (Aug 2025 - Present, Phagwara, Punjab)\n2. Sri Valli Vilas Alaya: Class XII CBSE, 79.6% (May 2024, Cuddalore, TN)\n3. Edify School Vazhappattu Neelikkupam: Class X CBSE (2022, Cuddalore, TN)",
-        action: { label: 'View Academic Timeline', page: 'about' },
-      };
-    }
-
-    if (q.includes('skill') || q.includes('stack') || q.includes('tech') || q.includes('language') || q.includes('python') || q.includes('sql') || q.includes('react') || q.includes('intermediate') || q.includes('level') || q.includes('proficiency')) {
-      return {
-        text: "Tharun is at an Intermediate (approx 60%) proficiency level with hands-on project experience across:\n• Languages: Python (60%), SQL (60%), JavaScript (60%), TypeScript (60%), HTML/CSS (65%)\n• Technologies: React (60%), Flask (60%), Three.js (60%), Pandas (60%), Tailwind CSS (65%)\n• Databases/Tools: SQLite (60%), MySQL (60%), Git (65%), GitHub & GitHub Actions (65%), Render, Vercel\n• Soft Skills: Analytical Thinking, Problem Solving, Team Collaboration, Research Mindset, Adaptability",
-        action: { label: 'View Full Skills Matrix', page: 'skills' },
-      };
-    }
-
-    if (q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('mobile') || q.includes('reach') || q.includes('message') || q.includes('linkedin')) {
-      return {
-        text: `You can reach Tharun directly:\n📧 Email: ${PORTFOLIO_DATA.personal.email}\n📱 Mobile: ${PORTFOLIO_DATA.personal.phone}\n💼 LinkedIn: linkedin.com/in/tharun1306\n🐙 GitHub: github.com/TP200613/TP200613\n📍 Location: Lovely Professional University, Phagwara, Punjab`,
-        action: { label: 'Open Contact Form', page: 'contact' },
-      };
-    }
-
-    if (q.includes('hi') || q.includes('hello') || q.includes('hey') || q.includes('greetings') || q.includes('who are you')) {
-      return {
-        text: `Hello there! I am Tharun AI, the intelligent interactive copilot for THARUN RAJ T P. I can provide details about Tharun's B.Tech at LPU (CGPA 7.88), his GitPulse platform, LeetCode daily streak, Microsoft AI Fest certificates, and technical skill set. What would you like to know?`,
-        action: { label: 'Explore Projects', page: 'projects' },
-      };
-    }
-
-    if (q.includes('terminal') || q.includes('shell') || q.includes('bash') || q.includes('command')) {
-      return {
-        text: `Tharun has an interactive retro-futuristic unix developer shell embedded in the portfolio. You can run commands like 'help', 'gitpulse', 'education', 'skills', 'stats', 'matrix', and 'sudo hire-me'.`,
-        action: { label: 'Open Mainframe Terminal', page: 'terminal' },
-      };
-    }
-
-    return {
-      text: `THARUN RAJ T P is an AI & Data Engineering student @ LPU (CGPA 7.88), creator of GitPulse (solo 5-week build), and holds ${PORTFOLIO_DATA.certificates.length} verified Microsoft certificates. His skill set is at an intermediate level (60%) with proven real-world execution. Feel free to ask about his projects, review his code, or connect directly!`,
-      action: { label: 'Contact Tharun', page: 'contact' },
-    };
-  };
-
   const handleSend = (textToSend?: string) => {
     const query = textToSend || input;
     if (!query.trim()) return;
@@ -243,26 +175,33 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ onNavigatePage, onOpen
     setIsTyping(true);
 
     setTimeout(() => {
-      const response = generateAIResponse(query);
+      // Execute RAG retrieval and synthesis
+      const ragResult = queryTharunRAG(query);
       const aiMsgId = generateMessageId();
       const aiMsg: Message = {
         id: aiMsgId,
         sender: 'ai',
-        text: response.text,
-        action: response.action,
+        text: ragResult.answer,
+        sources: ragResult.retrievedDocs,
+        action: ragResult.action,
+        followUps: ragResult.suggestedFollowUps,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
+
       setMessages((prev) => [...prev, aiMsg]);
+      if (ragResult.suggestedFollowUps && ragResult.suggestedFollowUps.length > 0) {
+        setActivePrompts(ragResult.suggestedFollowUps);
+      }
       setIsTyping(false);
       soundFx.playSuccess();
 
       if (autoSpeak) {
-        handleSpeakMessage(aiMsgId, response.text);
+        handleSpeakMessage(aiMsgId, ragResult.answer);
       }
-    }, 400);
+    }, 350);
   };
 
-  const handleActionClick = (action: { label: string; page?: PageId; isResume?: boolean }) => {
+  const handleActionClick = (action: { label: string; page?: PageId; isResume?: boolean; externalUrl?: string }) => {
     soundFx.playClick();
     if (action.isResume) {
       if (onOpenResume) {
@@ -270,6 +209,8 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ onNavigatePage, onOpen
       }
     } else if (action.page) {
       onNavigatePage(action.page);
+    } else if (action.externalUrl) {
+      window.open(action.externalUrl, '_blank', 'noopener,noreferrer');
     }
     setIsOpen(false);
   };
@@ -373,12 +314,15 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ onNavigatePage, onOpen
 
           {/* Quick Prompts Carousel */}
           <div className="px-3 py-2 bg-[#faf8f5]/80 border-b border-[var(--theme-border)] flex items-center gap-1.5 overflow-x-auto text-[11px]">
-            <span className="text-[#78716c] text-[10px] shrink-0 font-bold">Ask:</span>
-            {QUICK_PROMPTS.map((p, i) => (
+            <span className="text-[#78716c] text-[10px] shrink-0 font-bold flex items-center gap-1">
+              <Sparkles size={11} className="text-[var(--theme-primary)]" />
+              <span>Ask:</span>
+            </span>
+            {activePrompts.map((p, i) => (
               <button
                 key={i}
                 onClick={() => handleSend(p)}
-                className="px-2.5 py-1 rounded-full bg-[#ffffff] hover:bg-[var(--theme-light)] border border-[var(--theme-border)] hover:border-[var(--theme-primary)] text-[var(--theme-dark)] whitespace-nowrap shrink-0 transition-colors font-medium cursor-pointer"
+                className="px-2.5 py-1 rounded-full bg-[#ffffff] hover:bg-[var(--theme-light)] border border-[var(--theme-border)] hover:border-[var(--theme-primary)] text-[var(--theme-dark)] whitespace-nowrap shrink-0 transition-colors font-medium cursor-pointer shadow-xs"
               >
                 {p}
               </button>
@@ -399,14 +343,26 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ onNavigatePage, onOpen
                 )}
 
                 <div
-                  className={`max-w-[85%] rounded-2xl p-3.5 space-y-2 ${
+                  className={`max-w-[85%] rounded-2xl p-3.5 space-y-2.5 ${
                     m.sender === 'user'
                       ? 'btn-theme-primary rounded-br-none shadow-sm'
                       : 'bg-[#ffffff] border border-[var(--theme-border)] text-[#1c1917] rounded-bl-none shadow-sm'
                   }`}
                 >
+                  {/* Retrieved Knowledge Base Source Badges */}
+                  {m.sources && m.sources.length > 0 && (
+                    <div className="flex flex-wrap items-center gap-1 pb-1.5 border-b border-[var(--theme-border)]/60 text-[9px] text-[#78716c]">
+                      <BookOpen size={10} className="text-[var(--theme-primary)]" />
+                      <span className="font-semibold text-[#57534e]">RAG Source:</span>
+                      <span className="px-1.5 py-0.5 rounded bg-[var(--theme-light)] font-mono text-[var(--theme-dark)]">
+                        {m.sources[0].title}
+                      </span>
+                    </div>
+                  )}
+
                   <p className="leading-relaxed whitespace-pre-wrap">{m.text}</p>
 
+                  {/* Primary Action Button */}
                   {m.action && (
                     <button
                       onClick={() => handleActionClick(m.action!)}
@@ -415,6 +371,27 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ onNavigatePage, onOpen
                       <span>{m.action.label}</span>
                       <ArrowRight size={11} />
                     </button>
+                  )}
+
+                  {/* Contextual Suggested Follow-up Questions */}
+                  {m.sender === 'ai' && m.followUps && m.followUps.length > 0 && (
+                    <div className="pt-1.5 border-t border-[var(--theme-border)]/50 space-y-1">
+                      <div className="flex items-center gap-1 text-[9px] font-bold text-[#78716c]">
+                        <HelpCircle size={9} />
+                        <span>Suggested follow-ups:</span>
+                      </div>
+                      <div className="flex flex-wrap gap-1">
+                        {m.followUps.slice(0, 2).map((fu, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => handleSend(fu)}
+                            className="px-2 py-0.5 rounded bg-[#f5f5f4] hover:bg-[var(--theme-light)] hover:border-[var(--theme-primary)] border border-stone-200 text-[10px] text-[#44403c] transition-colors cursor-pointer text-left font-medium"
+                          >
+                            💬 {fu}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                   )}
 
                   <div className="flex items-center justify-between pt-1 border-t border-black/5 text-[9px] font-mono">
@@ -426,7 +403,7 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({ onNavigatePage, onOpen
                             ? 'text-[var(--theme-primary)] font-bold bg-[var(--theme-light)] animate-pulse'
                             : 'text-[#78716c] hover:text-[#1c1917]'
                         }`}
-                        title={speakingMsgId === m.id ? 'Stop reading' : 'Read message aloud'}
+                        title={speakingMsgId === m.id ? 'Stop reading' : 'Read message aloud in male voice'}
                       >
                         <Volume2 size={11} />
                         <span>{speakingMsgId === m.id ? 'Speaking...' : 'Listen'}</span>
