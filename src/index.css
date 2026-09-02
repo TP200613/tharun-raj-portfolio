@@ -1,0 +1,449 @@
+@import "tailwindcss";
+
+@layer base {
+  :root,
+  [data-theme="burgundy"] {
+    --font-heading: 'Outfit', 'Space Grotesk', sans-serif;
+    --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Fira Code', ui-monospace, monospace;
+    
+    /* Theme Tokens: Deep Burgundy & Gold Sand */
+    --theme-primary: #4A0E17;
+    --theme-primary-hover: #6E1A27;
+    --theme-dark: #1A080E;
+    --theme-light: #FAF6F0;
+    --theme-subtle: #F5EBE1;
+    --theme-border: #E5D3B3;
+    --theme-border-hover: #C8A464;
+    --theme-gold: #C8A464;
+    --theme-gold-hover: #D7B578;
+    --theme-gold-burnished: #9E7A38;
+    --theme-gold-champagne: #E5D3B3;
+    --theme-glow: rgba(74, 14, 23, 0.25);
+    --theme-glow-gold: rgba(200, 164, 100, 0.35);
+    --theme-gradient: linear-gradient(135deg, #4A0E17 0%, #6E1A27 45%, #C8A464 100%);
+    --theme-gradient-gold: linear-gradient(135deg, #E5D3B3 0%, #C8A464 50%, #9E7A38 100%);
+    
+    --bg-base: #FAF6F0;
+    --bg-surface: #ffffff;
+    --text-main: #1A080E;
+    --text-muted: #5A4A4D;
+    --text-subtle: #8A7A7D;
+  }
+
+  [data-theme="sandal"] {
+    --theme-primary: #b8860b;
+    --theme-primary-hover: #936a28;
+    --theme-dark: #8c6721;
+    --theme-light: #fbf7ef;
+    --theme-subtle: #faf4eb;
+    --theme-border: #e8decb;
+    --theme-border-hover: #b8860b;
+    --theme-glow: rgba(184, 134, 11, 0.22);
+    --theme-gradient: linear-gradient(135deg, #b8860b 0%, #d4af37 40%, #8c6721 100%);
+  }
+
+  [data-theme="datapacket"] {
+    --theme-primary: #06b6d4;
+    --theme-primary-hover: #0891b2;
+    --theme-dark: #0e7490;
+    --theme-light: #ecfeff;
+    --theme-subtle: #f0fdfa;
+    --theme-border: #a5f3fc;
+    --theme-border-hover: #06b6d4;
+    --theme-glow: rgba(6, 182, 212, 0.28);
+    --theme-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #10b981 100%);
+  }
+
+  [data-theme="rosegold"] {
+    --theme-primary: #e11d48;
+    --theme-primary-hover: #be123c;
+    --theme-dark: #9f1239;
+    --theme-light: #fff1f2;
+    --theme-subtle: #ffe4e6;
+    --theme-border: #fecdd3;
+    --theme-border-hover: #e11d48;
+    --theme-glow: rgba(225, 29, 72, 0.22);
+    --theme-gradient: linear-gradient(135deg, #e11d48 0%, #fb7185 45%, #9f1239 100%);
+  }
+
+  [data-theme="emerald"] {
+    --theme-primary: #059669;
+    --theme-primary-hover: #047857;
+    --theme-dark: #065f46;
+    --theme-light: #ecfdf5;
+    --theme-subtle: #f0fdf4;
+    --theme-border: #a7f3d0;
+    --theme-border-hover: #059669;
+    --theme-glow: rgba(5, 150, 105, 0.22);
+    --theme-gradient: linear-gradient(135deg, #059669 0%, #10b981 45%, #047857 100%);
+  }
+
+  [data-theme="sapphire"] {
+    --theme-primary: #2563eb;
+    --theme-primary-hover: #1d4ed8;
+    --theme-dark: #1e40af;
+    --theme-light: #eff6ff;
+    --theme-subtle: #f0f7ff;
+    --theme-border: #bfdbfe;
+    --theme-border-hover: #2563eb;
+    --theme-glow: rgba(37, 99, 235, 0.22);
+    --theme-gradient: linear-gradient(135deg, #2563eb 0%, #3b82f6 45%, #1d4ed8 100%);
+  }
+
+  [data-theme="amethyst"] {
+    --theme-primary: #7c3aed;
+    --theme-primary-hover: #6d28d9;
+    --theme-dark: #5b21b6;
+    --theme-light: #f5f3ff;
+    --theme-subtle: #faf5ff;
+    --theme-border: #ddd6fe;
+    --theme-border-hover: #7c3aed;
+    --theme-glow: rgba(124, 58, 237, 0.22);
+    --theme-gradient: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 45%, #6d28d9 100%);
+  }
+
+  [data-theme="amber"] {
+    --theme-primary: #ea580c;
+    --theme-primary-hover: #c2410c;
+    --theme-dark: #9a3412;
+    --theme-light: #fff7ed;
+    --theme-subtle: #fffbeb;
+    --theme-border: #fed7aa;
+    --theme-border-hover: #ea580c;
+    --theme-glow: rgba(234, 88, 12, 0.22);
+    --theme-gradient: linear-gradient(135deg, #ea580c 0%, #f97316 45%, #c2410c 100%);
+  }
+
+  [data-theme="cyan"] {
+    --theme-primary: #0891b2;
+    --theme-primary-hover: #0e7490;
+    --theme-dark: #155e75;
+    --theme-light: #ecfeff;
+    --theme-subtle: #f0fdfa;
+    --theme-border: #a5f3fc;
+    --theme-border-hover: #0891b2;
+    --theme-glow: rgba(8, 145, 178, 0.22);
+    --theme-gradient: linear-gradient(135deg, #0891b2 0%, #06b6d4 45%, #0e7490 100%);
+  }
+
+  [data-theme="cognac"] {
+    --theme-primary: #b45309;
+    --theme-primary-hover: #92400e;
+    --theme-dark: #78350f;
+    --theme-light: #fffbeb;
+    --theme-subtle: #fef3c7;
+    --theme-border: #fde68a;
+    --theme-border-hover: #b45309;
+    --theme-glow: rgba(180, 83, 9, 0.22);
+    --theme-gradient: linear-gradient(135deg, #b45309 0%, #d97706 45%, #92400e 100%);
+  }
+
+  [data-theme="slate"] {
+    --theme-primary: #475569;
+    --theme-primary-hover: #334155;
+    --theme-dark: #1e293b;
+    --theme-light: #f1f5f9;
+    --theme-subtle: #f8fafc;
+    --theme-border: #cbd5e1;
+    --theme-border-hover: #475569;
+    --theme-glow: rgba(71, 85, 105, 0.22);
+    --theme-gradient: linear-gradient(135deg, #475569 0%, #64748b 45%, #1e293b 100%);
+  }
+
+  [data-theme="bordeaux"] {
+    --theme-primary: #9f1239;
+    --theme-primary-hover: #881337;
+    --theme-dark: #4c0519;
+    --theme-light: #fff1f2;
+    --theme-subtle: #ffe4e6;
+    --theme-border: #fecdd3;
+    --theme-border-hover: #9f1239;
+    --theme-glow: rgba(159, 18, 57, 0.22);
+    --theme-gradient: linear-gradient(135deg, #9f1239 0%, #be123c 45%, #881337 100%);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+  }
+
+  body {
+    min-height: 100vh;
+    background-color: #faf8f5;
+    color: #1c1917;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #faf8f5;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #e2d5bc;
+    border-radius: 4px;
+    border: 2px solid #faf8f5;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--theme-primary);
+  }
+}
+
+/* Custom Typography Helpers */
+.font-heading {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+.font-sans-main {
+  font-family: var(--font-sans);
+}
+.font-mono-code {
+  font-family: 'Fira Code', monospace;
+}
+
+/* Dynamic Theme Helpers */
+.text-gradient-theme {
+  background: var(--theme-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-sandal {
+  background: var(--theme-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-burgundy {
+  background: linear-gradient(135deg, #4A0E17 0%, #6E1A27 40%, #C8A464 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold-sand {
+  background: linear-gradient(135deg, #E5D3B3 0%, #C8A464 50%, #9E7A38 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-theme-primary {
+  background-color: var(--theme-primary);
+  color: #ffffff;
+  box-shadow: 0 10px 25px -5px var(--theme-glow);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-theme-primary:hover {
+  background-color: var(--theme-primary-hover);
+  box-shadow: 0 14px 28px -4px var(--theme-glow);
+  transform: translateY(-1px);
+}
+
+.btn-theme-secondary {
+  background-color: #ffffff;
+  color: #1c1917;
+  border: 1px solid var(--theme-border);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-theme-secondary:hover {
+  background-color: var(--theme-light);
+  border-color: var(--theme-primary);
+  color: var(--theme-dark);
+  transform: translateY(-1px);
+}
+
+.card-luxury {
+  background-color: #ffffff;
+  border: 1px solid var(--theme-border);
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px -2px rgba(28, 25, 23, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-luxury:hover {
+  border-color: var(--theme-primary);
+  box-shadow: 0 12px 30px -4px var(--theme-glow);
+  transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(1.03);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+@keyframes waveHand {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.animate-wave {
+  animation: waveHand 2.2s infinite;
+  transform-origin: 70% 70%;
+  display: inline-block;
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 4.5s ease-in-out infinite;
+}
+
+@keyframes shimmerEffect {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-badge {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmerEffect 2.5s infinite;
+}
+
+
+/* Custom Cursor Management */
+@media (pointer: fine) {
+  html.custom-cursor-active,
+  html.custom-cursor-active body,
+  html.custom-cursor-active a,
+  html.custom-cursor-active button,
+  html.custom-cursor-active [role="button"],
+  html.custom-cursor-active select,
+  html.custom-cursor-active label,
+  html.custom-cursor-active .cursor-pointer {
+    cursor: none !important;
+  }
+
+  html.custom-cursor-active input,
+  html.custom-cursor-active textarea,
+  html.custom-cursor-active [contenteditable="true"] {
+    cursor: text;
+  }
+}
+
+/* ==========================================================================
+   ISOLATED PRINT / PDF GENERATION STYLES
+   Ensures ONLY the Resume / CV is printed/saved as PDF, eliminating webpage
+   decorations, navigation, backgrounds, and other elements.
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 15mm;
+  }
+
+  /* Reset body and html */
+  html, body {
+    background: #ffffff !important;
+    color: #1c1917 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Hide everything on the page by default */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* Show only the resume container and all its children */
+  #printable-resume-container,
+  #printable-resume-container * {
+    visibility: visible !important;
+  }
+
+  #printable-resume-container {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    z-index: 999999 !important;
+    display: block !important;
+  }
+
+  #printable-resume-card {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+  }
+
+  #printable-resume-body {
+    position: static !important;
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Force elements marked as print-hidden to not take any layout */
+  .print\:hidden,
+  .print-hidden {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Ensure colors and text are crisp on paper/PDF */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
