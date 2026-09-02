@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tp200613.github.io/tharun-raj/sitemap.xml
+Sitemap: https://tp200613.github.io/tharun-raj-portfolio/sitemap.xml
