@@ -44,22 +44,22 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigatePage }) => {
       if (displayText.length < currentFullText.length) {
         timer = setTimeout(() => {
           setDisplayText(currentFullText.slice(0, displayText.length + 1));
-        }, 50);
+        }, 30);
       } else {
         timer = setTimeout(() => {
           setIsDeleting(true);
-        }, 2200);
+        }, 1400);
       }
     } else {
       if (displayText.length > 0) {
         timer = setTimeout(() => {
           setDisplayText(currentFullText.slice(0, displayText.length - 1));
-        }, 25);
+        }, 15);
       } else {
         timer = setTimeout(() => {
           setIsDeleting(false);
           setTextIndex((prev) => (prev + 1) % ROLES.length);
-        }, 50);
+        }, 30);
       }
     }
 

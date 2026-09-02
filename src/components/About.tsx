@@ -143,10 +143,6 @@ export const About: React.FC = () => {
                 </div>
                 
                 <p className="text-[#57534e] text-sm sm:text-base leading-relaxed">
-                  I am <strong className="text-[#1c1917] font-semibold">Tharun Raj T P</strong>, a Computer Science &amp; Engineering undergraduate specializing in <span className="text-[var(--theme-dark)] font-semibold">Artificial Intelligence and Data Engineering</span> at Lovely Professional University (CGPA: 7.88). I am driven by the belief that real engineering mastery is born from <span className="text-[var(--theme-primary)] font-semibold">hands-on building</span>.
-                </p>
-
-                <p className="text-[#57534e] text-sm sm:text-base leading-relaxed">
                   In 5 weeks, I single-handedly designed and built <strong className="text-[#1c1917] font-semibold">GitPulse</strong>—a full-stack GitHub analytics platform combining a Python Flask API backend, a custom SQLite consistency engine, and an interactive 3D WebGL commit topology visualizer with Three.js.
                 </p>
 

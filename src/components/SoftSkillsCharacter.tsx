@@ -39,8 +39,8 @@ const SOFT_SKILLS: SoftSkillDetail[] = [
   {
     id: 'analytical',
     name: 'Analytical Thinking',
-    level: 95,
-    badge: 'Core Mindset',
+    level: 65,
+    badge: 'Intermediate Mindset',
     tagline: 'Deconstructing complex data structures & logical flows',
     description: 'Systematic breakdown of multi-variable problems, calculating algorithmic complexity, and mapping optimal relational database architectures.',
     realWorldExample: 'Designed SQLite analytics layer for GitPulse to calculate 0–100 consistency scores & streak mechanics.',
@@ -54,8 +54,8 @@ const SOFT_SKILLS: SoftSkillDetail[] = [
   {
     id: 'problem-solving',
     name: 'Problem Solving',
-    level: 94,
-    badge: 'Daily Rigor',
+    level: 65,
+    badge: 'Intermediate Rigor',
     tagline: 'Algorithmic persistence and root-cause debugging',
     description: 'Relentless drive to discover elegant, clean solutions for edge cases, memory bottlenecks, and asynchronous race conditions.',
     realWorldExample: 'Maintained 30+ consecutive days LeetCode daily challenge streak with structured pattern logs.',
@@ -69,8 +69,8 @@ const SOFT_SKILLS: SoftSkillDetail[] = [
   {
     id: 'collaboration',
     name: 'Team Collaboration',
-    level: 90,
-    badge: 'Synergy & Git',
+    level: 60,
+    badge: 'Team Synergy',
     tagline: 'Empathy, clear documentation, and peer review',
     description: 'Active listener who embraces agile workflows, writes thorough documentation, and fosters positive, productive pair-programming environments.',
     realWorldExample: 'Certified in GitHub CI/CD workflows and collaborative repository best practices at Microsoft AI Fest.',
@@ -84,7 +84,7 @@ const SOFT_SKILLS: SoftSkillDetail[] = [
   {
     id: 'research',
     name: 'Research Mindset',
-    level: 92,
+    level: 65,
     badge: 'Continuous Learner',
     tagline: 'Curiosity driven exploration of modern AI & tools',
     description: 'Eagerness to dive deep into official documentation, benchmarks, and emerging tech stacks to choose the right tool for the job.',
@@ -99,8 +99,8 @@ const SOFT_SKILLS: SoftSkillDetail[] = [
   {
     id: 'adaptability',
     name: 'Adaptability & Agility',
-    level: 92,
-    badge: 'Fast Pivot',
+    level: 65,
+    badge: 'Full-Stack Agility',
     tagline: 'Rapid versatility across full-stack ecosystems',
     description: 'Seamlessly shifting between Python Flask backend logic, React TypeScript UI interfaces, and SQL database querying with speed and precision.',
     realWorldExample: 'Balanced B.Tech CSE coursework (CGPA 7.88), independent software builds, and competitive programming.',

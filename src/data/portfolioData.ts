@@ -254,42 +254,42 @@ export const PORTFOLIO_DATA = {
     {
       category: 'Languages',
       skills: [
-        { name: 'Python', level: 92, experience: 'Advanced' },
-        { name: 'SQL', level: 90, experience: 'Advanced' },
-        { name: 'JavaScript (ES6+)', level: 85, experience: 'Proficient' },
-        { name: 'TypeScript', level: 82, experience: 'Proficient' },
-        { name: 'HTML5 & CSS3', level: 92, experience: 'Advanced' }
+        { name: 'Python', level: 60, experience: 'Intermediate' },
+        { name: 'SQL', level: 60, experience: 'Intermediate' },
+        { name: 'JavaScript (ES6+)', level: 60, experience: 'Intermediate' },
+        { name: 'TypeScript', level: 60, experience: 'Intermediate' },
+        { name: 'HTML5 & CSS3', level: 65, experience: 'Intermediate' }
       ]
     },
     {
       category: 'Technologies & Frameworks',
       skills: [
-        { name: 'Pandas', level: 88, experience: 'Proficient' },
-        { name: 'React', level: 90, experience: 'Advanced' },
-        { name: 'Flask', level: 88, experience: 'Proficient' },
-        { name: 'Three.js & React Three Fiber', level: 82, experience: 'Hands-On' },
-        { name: 'Tailwind CSS', level: 92, experience: 'Advanced' }
+        { name: 'Pandas', level: 60, experience: 'Intermediate' },
+        { name: 'React', level: 60, experience: 'Intermediate' },
+        { name: 'Flask', level: 60, experience: 'Intermediate' },
+        { name: 'Three.js & React Three Fiber', level: 60, experience: 'Intermediate' },
+        { name: 'Tailwind CSS', level: 65, experience: 'Intermediate' }
       ]
     },
     {
       category: 'Databases & Tools',
       skills: [
-        { name: 'MySQL', level: 86, experience: 'Proficient' },
-        { name: 'SQLite', level: 90, experience: 'Advanced' },
-        { name: 'Git', level: 94, experience: 'Advanced' },
-        { name: 'GitHub & GitHub Actions', level: 92, experience: 'Advanced' },
-        { name: 'Canva', level: 88, experience: 'Proficient' },
-        { name: 'Vercel & Render', level: 88, experience: 'Proficient' }
+        { name: 'MySQL', level: 60, experience: 'Intermediate' },
+        { name: 'SQLite', level: 60, experience: 'Intermediate' },
+        { name: 'Git', level: 65, experience: 'Intermediate' },
+        { name: 'GitHub & GitHub Actions', level: 65, experience: 'Intermediate' },
+        { name: 'Canva', level: 60, experience: 'Intermediate' },
+        { name: 'Vercel & Render', level: 60, experience: 'Intermediate' }
       ]
     },
     {
       category: 'Soft Skills',
       skills: [
-        { name: 'Analytical Thinking', level: 95, experience: 'Core' },
-        { name: 'Problem Solving', level: 94, experience: 'Core' },
-        { name: 'Team Collaboration', level: 90, experience: 'Active' },
-        { name: 'Research Mindset', level: 92, experience: 'Core' },
-        { name: 'Adaptability', level: 92, experience: 'High' }
+        { name: 'Analytical Thinking', level: 65, experience: 'Intermediate' },
+        { name: 'Problem Solving', level: 65, experience: 'Intermediate' },
+        { name: 'Team Collaboration', level: 60, experience: 'Intermediate' },
+        { name: 'Research Mindset', level: 65, experience: 'Intermediate' },
+        { name: 'Adaptability', level: 65, experience: 'Intermediate' }
       ]
     }
   ] as SkillCategory[],

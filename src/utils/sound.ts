@@ -1,11 +1,14 @@
-// Web Audio API Sound Synthesizer for tactile UI feedback
+// Web Audio API Sound Synthesizer for tactile UI feedback & Speech Synthesis
 
 class SoundEffects {
   private ctx: AudioContext | null = null;
   private isMuted: boolean = false;
+  private voices: SpeechSynthesisVoice[] = [];
+  private voiceGender: 'female' | 'male' = 'female';
+  private currentlySpeaking: boolean = false;
 
   constructor() {
-    // Initialized on first user interaction
+    this.initVoices();
   }
 
   private initCtx() {
@@ -20,12 +23,52 @@ class SoundEffects {
     }
   }
 
+  private initVoices() {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      const loadVoices = () => {
+        try {
+          this.voices = window.speechSynthesis.getVoices();
+        } catch {
+          this.voices = [];
+        }
+      };
+
+      loadVoices();
+      if (window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = loadVoices;
+      }
+    }
+  }
+
   public setMuted(muted: boolean) {
     this.isMuted = muted;
+    if (muted && typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      this.currentlySpeaking = false;
+    }
   }
 
   public getMuted(): boolean {
     return this.isMuted;
+  }
+
+  public setVoiceGender(gender: 'female' | 'male') {
+    this.voiceGender = gender;
+  }
+
+  public getVoiceGender(): 'female' | 'male' {
+    return this.voiceGender;
+  }
+
+  public isVoiceSpeaking(): boolean {
+    return this.currentlySpeaking;
+  }
+
+  public stopSpeech() {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      this.currentlySpeaking = false;
+    }
   }
 
   public playClick() {
@@ -141,32 +184,108 @@ class SoundEffects {
     }
   }
 
-  public speakText(text: string) {
+  public speakText(text: string, onStart?: () => void, onEnd?: () => void) {
     if (this.isMuted) return;
+
     try {
       if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-        window.speechSynthesis.cancel(); // Stop any pending speech
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.rate = 1.05;
-        utterance.pitch = 1.0;
-        utterance.volume = 0.85;
-
-        // Pick an English voice if available
-        const voices = window.speechSynthesis.getVoices();
-        const englishVoice = voices.find(
-          (v) => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Male'))
-        ) || voices.find((v) => v.lang.startsWith('en'));
-
-        if (englishVoice) {
-          utterance.voice = englishVoice;
+        // Resume synthesis if paused (common Chrome issue)
+        if (window.speechSynthesis.paused) {
+          window.speechSynthesis.resume();
         }
 
-        window.speechSynthesis.speak(utterance);
+        // Cancel previous speech
+        window.speechSynthesis.cancel();
+
+        // Ensure voices are fetched
+        if (!this.voices || this.voices.length === 0) {
+          this.voices = window.speechSynthesis.getVoices();
+        }
+
+        // Small delay so cancel doesn't abruptly drop new utterance in Chrome
+        setTimeout(() => {
+          try {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = 1.02; // Natural, clear conversational pacing
+            utterance.pitch = this.voiceGender === 'female' ? 1.08 : 0.95;
+            utterance.volume = 0.95;
+
+            // Select natural voice prioritizing female/natural clear voice
+            const availableVoices = this.voices.length > 0 ? this.voices : window.speechSynthesis.getVoices();
+
+            let matchedVoice: SpeechSynthesisVoice | undefined;
+
+            if (this.voiceGender === 'female') {
+              // High priority female / natural voices across Chrome, Safari, Edge, Android, iOS, Windows
+              matchedVoice = availableVoices.find(
+                (v) =>
+                  v.lang.startsWith('en') &&
+                  (v.name.includes('Google UK English Female') ||
+                    v.name.includes('Google US English') ||
+                    v.name.includes('Natural') ||
+                    v.name.includes('Jenny') ||
+                    v.name.includes('Zira') ||
+                    v.name.includes('Samantha') ||
+                    v.name.includes('Victoria') ||
+                    v.name.includes('Karen') ||
+                    v.name.includes('Moira') ||
+                    v.name.includes('Female') ||
+                    v.name.includes('female'))
+              );
+            } else {
+              matchedVoice = availableVoices.find(
+                (v) =>
+                  v.lang.startsWith('en') &&
+                  (v.name.includes('Male') ||
+                    v.name.includes('Guy') ||
+                    v.name.includes('David') ||
+                    v.name.includes('George') ||
+                    v.name.includes('Daniel'))
+              );
+            }
+
+            // Fallback to any English voice or default
+            if (!matchedVoice) {
+              matchedVoice =
+                availableVoices.find((v) => v.lang.startsWith('en-US')) ||
+                availableVoices.find((v) => v.lang.startsWith('en-GB')) ||
+                availableVoices.find((v) => v.lang.startsWith('en')) ||
+                availableVoices[0];
+            }
+
+            if (matchedVoice) {
+              utterance.voice = matchedVoice;
+            }
+
+            utterance.onstart = () => {
+              this.currentlySpeaking = true;
+              if (onStart) onStart();
+            };
+
+            utterance.onend = () => {
+              this.currentlySpeaking = false;
+              if (onEnd) onEnd();
+            };
+
+            utterance.onerror = () => {
+              this.currentlySpeaking = false;
+              if (onEnd) onEnd();
+            };
+
+            window.speechSynthesis.speak(utterance);
+          } catch {
+            this.currentlySpeaking = false;
+            this.playGreetingChime();
+            if (onEnd) onEnd();
+          }
+        }, 30);
       } else {
         this.playGreetingChime();
+        if (onEnd) onEnd();
       }
     } catch {
       this.playGreetingChime();
+      if (onEnd) onEnd();
     }
   }
 

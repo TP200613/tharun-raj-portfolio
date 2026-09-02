@@ -276,7 +276,7 @@ export const IntroSequence: React.FC<IntroSequenceProps> = ({
 
     setTimeout(() => {
       onComplete();
-    }, 700);
+    }, 450);
   }, [accentColor, isExploding, onComplete]);
 
   // Esc key listener for instant bypass

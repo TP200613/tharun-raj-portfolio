@@ -23,7 +23,7 @@ export interface EnhancedSkill {
   name: string;
   category: string;
   level: number;
-  experience: 'Advanced' | 'Proficient' | 'Hands-On';
+  experience: 'Intermediate' | 'Advanced' | 'Proficient' | 'Hands-On';
   brandColor: string;
   bgGlow: string;
   practicalUsage: string;
@@ -35,8 +35,8 @@ const ENHANCED_SKILLS: EnhancedSkill[] = [
   {
     name: 'Python',
     category: 'Languages',
-    level: 92,
-    experience: 'Advanced',
+    level: 60,
+    experience: 'Intermediate',
     brandColor: '#387eb8',
     bgGlow: 'rgba(56, 126, 184, 0.14)',
     practicalUsage: 'Backend microservices, ML data pipelines, SQLite analytics & LeetCode DSA solving',
@@ -46,8 +46,8 @@ const ENHANCED_SKILLS: EnhancedSkill[] = [
   {
     name: 'SQL',
     category: 'Languages',
-    level: 90,
-    experience: 'Advanced',
+    level: 60,
+    experience: 'Intermediate',
     brandColor: '#0284c7',
     bgGlow: 'rgba(2, 132, 199, 0.14)',
     practicalUsage: 'Relational schema design, sub-ms indexed queries, aggregations & consistency metrics',
@@ -57,8 +57,8 @@ const ENHANCED_SKILLS: EnhancedSkill[] = [
   {
     name: 'React',
     category: 'Technologies & Frameworks',
-    level: 90,
-    experience: 'Advanced',
+    level: 60,
+    experience: 'Intermediate',
     brandColor: '#06b6d4',
     bgGlow: 'rgba(6, 182, 212, 0.14)',
     practicalUsage: 'Component architecture, custom hooks, reactive state, Three.js 3D integration',
@@ -68,8 +68,8 @@ const ENHANCED_SKILLS: EnhancedSkill[] = [
   {
     name: 'TypeScript',
     category: 'Languages',
-    level: 85,
-    experience: 'Proficient',
+    level: 60,
+    experience: 'Intermediate',
     brandColor: '#3178c6',
     bgGlow: 'rgba(49, 120, 198, 0.14)',
     practicalUsage: 'Type safety, strict interfaces, generic API models & scalable application design',
@@ -79,8 +79,8 @@ const ENHANCED_SKILLS: EnhancedSkill[] = [
   {
     name: 'JavaScript (ES6+)',
     category: 'Languages',
-    level: 85,
-    experience: 'Proficient',
+    level: 60,
+    experience: 'Intermediate',
     brandColor: '#eab308',
     bgGlow: 'rgba(234, 179, 8, 0.14)',
     practicalUsage: 'Asynchronous async/await logic, DOM manipulations, Canvas rendering & event systems',
@@ -90,8 +90,8 @@ const ENHANCED_SKILLS: EnhancedSkill[] = [
   {
     name: 'HTML5 & CSS3',
     category: 'Languages',
-    level: 92,
-    experience: 'Advanced',
+    level: 65,
+    experience: 'Intermediate',
     brandColor: '#e34f26',
     bgGlow: 'rgba(227, 79, 38, 0.14)',
     practicalUsage: 'Semantic layouts, responsive flex/grid architectures, keyframe animations & accessibility',
@@ -101,8 +101,8 @@ const ENHANCED_SKILLS: EnhancedSkill[] = [
   {
     name: 'Three.js & React Three Fiber',
     category: 'Technologies & Frameworks',
-    level: 82,
-    experience: 'Hands-On',
+    level: 60,
+    experience: 'Intermediate',
     brandColor: '#9333ea',
     bgGlow: 'rgba(147, 51, 234, 0.14)',
     practicalUsage: '3D WebGL interactive commit topology, node clustering, shaders & camera orbit controls',
@@ -112,8 +112,8 @@ const ENHANCED_SKILLS: EnhancedSkill[] = [
   {
     name: 'Flask',
     category: 'Technologies & Frameworks',
-    level: 88,
-    experience: 'Proficient',
+    level: 60,
+    experience: 'Intermediate',
     brandColor: '#1c1917',
     bgGlow: 'rgba(28, 25, 23, 0.12)',
     practicalUsage: 'Python RESTful API endpoints, GitHub API scraping, CORS routing & analytical services',
@@ -123,8 +123,8 @@ const ENHANCED_SKILLS: EnhancedSkill[] = [
   {
     name: 'Pandas',
     category: 'Technologies & Frameworks',
-    level: 88,
-    experience: 'Proficient',
+    level: 60,
+    experience: 'Intermediate',
     brandColor: '#150458',
     bgGlow: 'rgba(21, 4, 88, 0.14)',
     practicalUsage: 'DataFrame transformations, time-series analysis, statistical metrics & data cleaning',
@@ -134,8 +134,8 @@ const ENHANCED_SKILLS: EnhancedSkill[] = [
   {
     name: 'Tailwind CSS',
     category: 'Technologies & Frameworks',
-    level: 92,
-    experience: 'Advanced',
+    level: 65,
+    experience: 'Intermediate',
     brandColor: '#0ea5e9',
     bgGlow: 'rgba(14, 165, 233, 0.14)',
     practicalUsage: 'Utility-first modern styling, dark/light themes, fluid typography & glassmorphism UI',
@@ -145,8 +145,8 @@ const ENHANCED_SKILLS: EnhancedSkill[] = [
   {
     name: 'SQLite',
     category: 'Databases & Tools',
-    level: 90,
-    experience: 'Advanced',
+    level: 60,
+    experience: 'Intermediate',
     brandColor: '#003b57',
     bgGlow: 'rgba(0, 59, 87, 0.14)',
     practicalUsage: 'Lightweight embedded storage, commit streak calculations & 0–100 consistency engine',
@@ -156,8 +156,8 @@ const ENHANCED_SKILLS: EnhancedSkill[] = [
   {
     name: 'MySQL',
     category: 'Databases & Tools',
-    level: 86,
-    experience: 'Proficient',
+    level: 60,
+    experience: 'Intermediate',
     brandColor: '#00758f',
     bgGlow: 'rgba(0, 117, 143, 0.14)',
     practicalUsage: 'Relational database schema normalization, multi-table joins & transaction integrity',
@@ -167,8 +167,8 @@ const ENHANCED_SKILLS: EnhancedSkill[] = [
   {
     name: 'Git',
     category: 'Databases & Tools',
-    level: 94,
-    experience: 'Advanced',
+    level: 65,
+    experience: 'Intermediate',
     brandColor: '#f05032',
     bgGlow: 'rgba(240, 80, 50, 0.14)',
     practicalUsage: 'Branching models, merge conflict resolution, rebase workflows & version history',
@@ -178,8 +178,8 @@ const ENHANCED_SKILLS: EnhancedSkill[] = [
   {
     name: 'GitHub & GitHub Actions',
     category: 'Databases & Tools',
-    level: 92,
-    experience: 'Advanced',
+    level: 65,
+    experience: 'Intermediate',
     brandColor: '#24292f',
     bgGlow: 'rgba(36, 41, 47, 0.12)',
     practicalUsage: 'Automated CI/CD pipelines, secret scanning, repository security & release workflows',
@@ -189,8 +189,8 @@ const ENHANCED_SKILLS: EnhancedSkill[] = [
   {
     name: 'Vercel & Render',
     category: 'Databases & Tools',
-    level: 88,
-    experience: 'Proficient',
+    level: 60,
+    experience: 'Intermediate',
     brandColor: '#000000',
     bgGlow: 'rgba(0, 0, 0, 0.12)',
     practicalUsage: 'Edge CDN frontend hosting, Python web service deployment, SSL & environment keys',
@@ -200,8 +200,8 @@ const ENHANCED_SKILLS: EnhancedSkill[] = [
   {
     name: 'Canva',
     category: 'Databases & Tools',
-    level: 88,
-    experience: 'Proficient',
+    level: 60,
+    experience: 'Intermediate',
     brandColor: '#00c4cc',
     bgGlow: 'rgba(0, 196, 204, 0.14)',
     practicalUsage: 'Technical presentation decks, visual asset generation & architecture diagrams',
@@ -224,9 +224,7 @@ export const Skills: React.FC = () => {
       const matchCategory = activeCategory === 'All' || s.category === activeCategory;
       const matchLevel =
         levelFilter === 'All' ||
-        (levelFilter === 'Advanced' && s.experience === 'Advanced') ||
-        (levelFilter === 'Proficient' && s.experience === 'Proficient') ||
-        (levelFilter === 'Hands-On' && s.experience === 'Hands-On');
+        s.experience === levelFilter;
       const matchSearch =
         searchQuery.trim() === '' ||
         s.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -316,7 +314,7 @@ export const Skills: React.FC = () => {
             <div className="flex flex-wrap items-center gap-2">
               {/* Level Filter Dropdown */}
               <div className="flex items-center gap-1 bg-[#faf8f5] p-1 rounded-xl border border-[var(--theme-border)] text-xs">
-                {['All', 'Advanced', 'Proficient', 'Hands-On'].map((lvl) => (
+                {['All', 'Intermediate'].map((lvl) => (
                   <button
                     key={lvl}
                     onClick={() => {
@@ -498,15 +496,7 @@ export const Skills: React.FC = () => {
                         </div>
 
                         {/* Experience Level Pill */}
-                        <span
-                          className={`text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider border shadow-xs shrink-0 ${
-                            skill.experience === 'Advanced'
-                              ? 'bg-[#ecfdf5] text-[#15803d] border-[#a7f3d0]'
-                              : skill.experience === 'Proficient'
-                              ? 'bg-[var(--theme-light)] text-[var(--theme-dark)] border-[var(--theme-border)]'
-                              : 'bg-[#f5f3ff] text-[#7c3aed] border-[#ddd6fe]'
-                          }`}
-                        >
+                        <span className="text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wider border shadow-xs shrink-0 bg-[var(--theme-light)] text-[var(--theme-dark)] border-[var(--theme-border)]">
                           {skill.experience}
                         </span>
                       </div>
@@ -598,13 +588,7 @@ export const Skills: React.FC = () => {
                   </div>
 
                   <div className="flex items-center gap-4 sm:w-1/4 justify-between sm:justify-end">
-                    <span
-                      className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold uppercase ${
-                        skill.experience === 'Advanced'
-                          ? 'bg-[#ecfdf5] text-[#15803d]'
-                          : 'bg-[var(--theme-light)] text-[var(--theme-dark)]'
-                      }`}
-                    >
+                    <span className="text-[10px] px-2.5 py-0.5 rounded-full font-bold uppercase bg-[var(--theme-light)] text-[var(--theme-dark)] border border-[var(--theme-border)]">
                       {skill.experience}
                     </span>
                     <span className="text-xs font-mono font-bold text-[#1c1917]">
