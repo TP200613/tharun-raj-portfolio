@@ -115,7 +115,7 @@ export const DeveloperPassCard: React.FC<DeveloperPassCardProps> = ({
     if (persona === 'avatar') {
       return getAssetUrl('tharun_avatar.png');
     }
-    return getAssetUrl('tharun1.png');
+    return getAssetUrl('tharun.png');
   };
 
   return (

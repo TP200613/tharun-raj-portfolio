@@ -241,7 +241,7 @@ export const SoftSkillsCharacter: React.FC = () => {
     if (avatarStyle === '3d') {
       return getAssetUrl('tharun_avatar.png');
     }
-    return getAssetUrl('tharun1.png');
+    return getAssetUrl('tharun.png');
   };
 
   return (
