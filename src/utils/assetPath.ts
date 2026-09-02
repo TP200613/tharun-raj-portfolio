@@ -11,8 +11,13 @@ export const getAssetUrl = (path?: string): string => {
   ) {
     return path;
   }
-  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-  const baseUrl = import.meta.env.BASE_URL || './';
+  let cleanPath = path;
+  if (cleanPath.startsWith('./')) {
+    cleanPath = cleanPath.slice(2);
+  } else if (cleanPath.startsWith('/')) {
+    cleanPath = cleanPath.slice(1);
+  }
+  const baseUrl = import.meta.env.BASE_URL || '/';
   const prefix = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
   return `${prefix}${cleanPath}`;
 };
