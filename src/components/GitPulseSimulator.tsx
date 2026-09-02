@@ -11,6 +11,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import { soundFx } from '../utils/sound';
+import { getAssetUrl } from '../utils/assetPath';
 
 interface GitHubProfileData {
   login: string;
@@ -31,7 +32,7 @@ const PRESET_PROFILES: Record<string, GitHubProfileData> = {
   TP200613: {
     login: 'TP200613',
     name: 'Tharun Raj T P',
-    avatar_url: '/tharun.png',
+    avatar_url: getAssetUrl('tharun.png'),
     bio: 'B.Tech CSE (AI & Data Engineering) @ LPU | Full-Stack & GitPulse Creator',
     public_repos: 14,
     followers: 18,
@@ -422,7 +423,7 @@ export const GitPulseSimulator: React.FC = () => {
               <div className={`${compareMode ? 'w-full' : 'lg:col-span-7'} p-6 rounded-2xl bg-[#faf8f5] border border-[var(--theme-border)] space-y-6 shadow-sm`}>
                 <div className="flex items-start gap-4">
                   <img
-                    src={profile.avatar_url}
+                    src={getAssetUrl(profile.avatar_url)}
                     alt={profile.name}
                     className="w-16 h-16 rounded-2xl border-2 border-[var(--theme-primary)] shadow-md object-cover bg-white"
                   />
@@ -499,7 +500,7 @@ export const GitPulseSimulator: React.FC = () => {
                 <div className="w-full p-6 rounded-2xl bg-[var(--theme-light)] border border-[var(--theme-border)] space-y-6 shadow-sm">
                   <div className="flex items-start gap-4">
                     <img
-                      src={compareProfile.avatar_url}
+                      src={getAssetUrl(compareProfile.avatar_url)}
                       alt={compareProfile.name}
                       className="w-16 h-16 rounded-2xl border-2 border-[var(--theme-primary)] shadow-md object-cover bg-white"
                     />

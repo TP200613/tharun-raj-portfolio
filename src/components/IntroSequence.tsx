@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Sparkles, ArrowRight, Volume2, VolumeX, FastForward, Compass } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { soundFx } from '../utils/sound';
+import { getAssetUrl } from '../utils/assetPath';
 
 interface IntroSequenceProps {
   onComplete: () => void;
@@ -393,7 +394,7 @@ export const IntroSequence: React.FC<IntroSequenceProps> = ({
           <div className="relative flex items-center justify-center w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 bg-[#1c1917]/90 border-2 border-[#44403c] backdrop-blur-2xl shadow-2xl transition-all duration-300 group-hover:border-[var(--theme-primary)] group-hover:scale-105">
             <div className="w-full h-full rounded-full overflow-hidden bg-[#0c0a09] relative">
               <img
-                src="/tharun1.png"
+                src={getAssetUrl('tharun1.png')}
                 alt="Tharun Raj T P"
                 className="w-full h-full object-cover object-top scale-105 group-hover:scale-110 transition-transform duration-500"
               />

@@ -17,6 +17,7 @@ import {
   MousePointer
 } from 'lucide-react';
 import { soundFx } from '../utils/sound';
+import { getAssetUrl } from '../utils/assetPath';
 import { ACCENT_THEMES, type PageId, type AccentTheme } from '../types/theme';
 
 export type { PageId, AccentTheme };
@@ -111,7 +112,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {/* Front Side: Photo Avatar */}
                 <div className="absolute inset-0 w-full h-full rounded-2xl overflow-hidden border border-[var(--theme-border)] group-hover:border-[var(--theme-primary)] bg-[var(--theme-light)] [backface-visibility:hidden]">
                   <img
-                    src="/tharun1.png"
+                    src={getAssetUrl('tharun1.png')}
                     alt="Tharun Raj"
                     className="w-full h-full object-cover object-top"
                   />

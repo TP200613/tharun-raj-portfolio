@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { soundFx } from '../utils/sound';
+import { getAssetUrl } from '../utils/assetPath';
 
 export interface SoftSkillDetail {
   id: string;
@@ -235,12 +236,12 @@ export const SoftSkillsCharacter: React.FC = () => {
   // Determine which avatar image source to display based on style and waving state
   const getAvatarImageSrc = () => {
     if (avatarStyle === 'anime') {
-      return isWaving ? '/tharun_anime_wave.jpg' : '/tharun_anime.jpg';
+      return getAssetUrl(isWaving ? 'tharun_anime_wave.jpg' : 'tharun_anime.jpg');
     }
     if (avatarStyle === '3d') {
-      return '/tharun_avatar.png';
+      return getAssetUrl('tharun_avatar.png');
     }
-    return '/tharun.png';
+    return getAssetUrl('tharun.png');
   };
 
   return (

@@ -318,7 +318,7 @@ export const PORTFOLIO_DATA = {
       demo: 'https://github.com/TP200613/TP200613',
       featured: true,
       accent: 'from-cyan-500 via-blue-600 to-purple-600',
-      image: '/gitpulse_graphic.jpg'
+      image: './gitpulse_graphic.jpg'
     },
     {
       id: 'data-analytics-engine',
@@ -338,7 +338,7 @@ export const PORTFOLIO_DATA = {
       demo: 'https://github.com/TP200613',
       featured: true,
       accent: 'from-emerald-500 via-teal-600 to-cyan-600',
-      image: '/ai_pipeline_graphic.jpg'
+      image: './ai_pipeline_graphic.jpg'
     },
     {
       id: 'leetcode-solutions-vault',
@@ -358,7 +358,7 @@ export const PORTFOLIO_DATA = {
       demo: 'https://leetcode.com/u/_Tharun_13/',
       featured: true,
       accent: 'from-amber-500 via-orange-600 to-rose-600',
-      image: '/leetcode_graphic.jpg'
+      image: './leetcode_graphic.jpg'
     },
     {
       id: 'mainframe-terminal-os',
@@ -378,7 +378,7 @@ export const PORTFOLIO_DATA = {
       demo: 'https://github.com/TP200613',
       featured: true,
       accent: 'from-purple-500 via-indigo-600 to-blue-600',
-      image: '/terminal_graphic.jpg'
+      image: './terminal_graphic.jpg'
     }
   ] as Project[],
 

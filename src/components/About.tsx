@@ -19,6 +19,7 @@ import {
 import { Timeline } from './Timeline';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 import { soundFx } from '../utils/sound';
+import { getAssetUrl } from '../utils/assetPath';
 
 export const About: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'timeline' | 'certs' | 'specs'>('overview');
@@ -177,7 +178,7 @@ export const About: React.FC = () => {
               <div className="rounded-3xl bg-[#ffffff] border border-[var(--theme-border)] overflow-hidden shadow-md group">
                 <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#1c1917]">
                   <img
-                    src="/ai_pipeline_graphic.jpg"
+                    src={getAssetUrl('ai_pipeline_graphic.jpg')}
                     alt="AI and Data Architecture Blueprint"
                     className="w-full h-full object-cover opacity-85 group-hover:scale-103 transition-transform duration-700 ease-out"
                   />

@@ -3,6 +3,7 @@ import { X, ExternalLink, Cpu, CheckCircle2, Sparkles, Layers } from 'lucide-rea
 import type { Project } from '../data/portfolioData';
 import { GithubIcon } from './Icons';
 import { soundFx } from '../utils/sound';
+import { getAssetUrl } from '../utils/assetPath';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -30,7 +31,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           {project.image && (
             <>
               <img
-                src={project.image}
+                src={getAssetUrl(project.image)}
                 alt={project.title}
                 className="absolute inset-0 w-full h-full object-cover opacity-50"
               />

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Sparkles, Grid3X3, Binary, Waves, Settings2, Network, Flower2 } from 'lucide-react';
 import { soundFx } from '../utils/sound';
+import { getAssetUrl } from '../utils/assetPath';
 
 export type BackgroundMode = 'constellation' | 'blueprint' | 'binary' | 'silk' | 'datapacket' | 'floral';
 
@@ -466,7 +467,7 @@ export const ParticleBackground: React.FC<{ accentColor?: string }> = ({ accentC
         <div
           className="fixed inset-0 pointer-events-none z-0 bg-cover bg-center transition-opacity duration-700 animate-in fade-in"
           style={{
-            backgroundImage: 'url(/floral_luxury_light.jpg)',
+            backgroundImage: `url(${getAssetUrl('floral_luxury_light.jpg')})`,
             opacity: 0.12,
             mixBlendMode: 'multiply'
           }}

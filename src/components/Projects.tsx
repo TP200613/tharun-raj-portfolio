@@ -6,6 +6,7 @@ import { GithubIcon } from './Icons';
 import { ProjectModal } from './ProjectModal';
 import { GitPulseSimulator } from './GitPulseSimulator';
 import { soundFx } from '../utils/sound';
+import { getAssetUrl } from '../utils/assetPath';
 
 export const Projects: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
@@ -95,7 +96,7 @@ export const Projects: React.FC = () => {
               {project.image ? (
                 <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#1c1917] border-b border-[var(--theme-border)] cursor-pointer" onClick={() => handleInspect(project)}>
                   <img
-                    src={project.image}
+                    src={getAssetUrl(project.image)}
                     alt={project.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />

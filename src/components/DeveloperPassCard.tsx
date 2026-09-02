@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 import { soundFx } from '../utils/sound';
+import { getAssetUrl } from '../utils/assetPath';
 
 type AvatarPersona = 'photo' | 'anime' | 'avatar';
 
@@ -109,12 +110,12 @@ export const DeveloperPassCard: React.FC<DeveloperPassCardProps> = ({
 
   const getPersonaImage = () => {
     if (persona === 'anime') {
-      return isWaving ? '/tharun_anime_wave.jpg' : '/tharun_anime.jpg';
+      return getAssetUrl(isWaving ? 'tharun_anime_wave.jpg' : 'tharun_anime.jpg');
     }
     if (persona === 'avatar') {
-      return '/tharun_avatar.png';
+      return getAssetUrl('tharun_avatar.png');
     }
-    return '/tharun.png';
+    return getAssetUrl('tharun.png');
   };
 
   return (

@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 import { soundFx } from '../utils/sound';
+import { getAssetUrl } from '../utils/assetPath';
 
 export const LeetCodeDashboard: React.FC = () => {
   const stats = PORTFOLIO_DATA.leetcodeStats;
@@ -50,7 +51,7 @@ export const LeetCodeDashboard: React.FC = () => {
             {/* Big Total Solved Display with Graphic Showcase */}
             <div className="relative rounded-2xl overflow-hidden border border-[var(--theme-border)] bg-[#1c1917] text-white shadow-md group">
               <img
-                src="/leetcode_graphic.jpg"
+                src={getAssetUrl('leetcode_graphic.jpg')}
                 alt="LeetCode DSA Visualization"
                 className="w-full h-36 object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
               />
