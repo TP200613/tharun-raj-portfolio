@@ -4,7 +4,7 @@ class SoundEffects {
   private ctx: AudioContext | null = null;
   private isMuted: boolean = false;
   private voices: SpeechSynthesisVoice[] = [];
-  private voiceGender: 'female' | 'male' = 'female';
+  private voiceGender: 'female' | 'male' = 'male';
   private currentlySpeaking: boolean = false;
 
   constructor() {
@@ -210,13 +210,49 @@ class SoundEffects {
             utterance.pitch = this.voiceGender === 'female' ? 1.08 : 0.95;
             utterance.volume = 0.95;
 
-            // Select natural voice prioritizing female/natural clear voice
+            // Select natural voice prioritizing male clear voice
             const availableVoices = this.voices.length > 0 ? this.voices : window.speechSynthesis.getVoices();
 
             let matchedVoice: SpeechSynthesisVoice | undefined;
 
-            if (this.voiceGender === 'female') {
-              // High priority female / natural voices across Chrome, Safari, Edge, Android, iOS, Windows
+            if (this.voiceGender === 'male') {
+              // High priority male natural voices across Windows, Mac, Chrome, Edge, Android, iOS
+              matchedVoice = availableVoices.find(
+                (v) =>
+                  v.lang.startsWith('en') &&
+                  (v.name.includes('Microsoft David') ||
+                    v.name.includes('Microsoft Mark') ||
+                    v.name.includes('Microsoft Guy') ||
+                    v.name.includes('Google UK English Male') ||
+                    v.name.includes('Guy Online') ||
+                    v.name.includes('Ryan') ||
+                    v.name.includes('Daniel') ||
+                    v.name.includes('Alex') ||
+                    v.name.includes('Oliver') ||
+                    v.name.includes('Fred') ||
+                    v.name.includes('Tom') ||
+                    v.name.includes('Aaron') ||
+                    v.name.includes('Male') ||
+                    v.name.includes('male')) &&
+                  !v.name.includes('Female') &&
+                  !v.name.includes('female') &&
+                  !v.name.includes('Zira') &&
+                  !v.name.includes('Jenny')
+              );
+
+              if (!matchedVoice) {
+                matchedVoice = availableVoices.find(
+                  (v) =>
+                    v.lang.startsWith('en') &&
+                    (v.name.includes('David') ||
+                      v.name.includes('Mark') ||
+                      v.name.includes('George') ||
+                      v.name.includes('Guy') ||
+                      v.name.includes('Male') ||
+                      v.name.includes('male'))
+                );
+              }
+            } else {
               matchedVoice = availableVoices.find(
                 (v) =>
                   v.lang.startsWith('en') &&
@@ -232,23 +268,14 @@ class SoundEffects {
                     v.name.includes('Female') ||
                     v.name.includes('female'))
               );
-            } else {
-              matchedVoice = availableVoices.find(
-                (v) =>
-                  v.lang.startsWith('en') &&
-                  (v.name.includes('Male') ||
-                    v.name.includes('Guy') ||
-                    v.name.includes('David') ||
-                    v.name.includes('George') ||
-                    v.name.includes('Daniel'))
-              );
             }
 
-            // Fallback to any English voice or default
+            // Fallback to English voice
             if (!matchedVoice) {
               matchedVoice =
                 availableVoices.find((v) => v.lang.startsWith('en-US')) ||
                 availableVoices.find((v) => v.lang.startsWith('en-GB')) ||
+                availableVoices.find((v) => v.lang.startsWith('en-IN')) ||
                 availableVoices.find((v) => v.lang.startsWith('en')) ||
                 availableVoices[0];
             }
