@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tp200613.github.io/Portfolio/sitemap.xml
